@@ -14,17 +14,42 @@ public class UserDao {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	
-	private String USER_LIST = "SELECT * FROM users";
-	private String USER_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?)";
-	private String USER_UPDATE = "UPDATE users SET name = ?, role = ? WHERE id = ?";
-	private String USER_DELETE = "DELETE FROM users WHERE id = ?";
+	private String SELECT_USER = "SELECT * FROM users WHERE id = ?";
+	private String SELECT_USERS = "SELECT * FROM users";
+	private String INSERT_USER = "INSERT INTO users VALUES(?, ?, ?, ?)";
+	private String UPDATE_USER = "UPDATE users SET name = ?, role = ? WHERE id = ?";
+	private String DELETE_USER = "DELETE FROM users WHERE id = ?";
 	
-	public List<UserVo> getUserList() {
+	public UserVo selectUser(UserVo uv) {
+		UserVo user = null;
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			stmt = conn.prepareStatement(SELECT_USER);
+			stmt.setString(1, uv.getId());
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			user = new UserVo();
+			user.setId(rs.getString("id"));
+			user.setPassword(rs.getString("password"));
+			user.setName(rs.getString("name"));
+			user.setRole(rs.getString("role"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs, stmt, conn);
+		}
+		
+		return user;
+	}
+	
+	public List<UserVo> selectUsers() {
 		List<UserVo> userList = new ArrayList<>();
 		
 		try {
 			conn = JdbcUtil.getConnection();
-			stmt = conn.prepareStatement(USER_LIST);
+			stmt = conn.prepareStatement(SELECT_USERS);
 			rs = stmt.executeQuery();
 			
 			System.out.println("[USER ¸ñ·Ï]");
@@ -47,14 +72,14 @@ public class UserDao {
 		return userList;
 	}
 	
-	public void insertUser(UserVo vo) {
+	public void insertUser(UserVo uv) {
 		try {
 			conn = JdbcUtil.getConnection();
-			stmt = conn.prepareStatement(USER_INSERT);
-			stmt.setString(1, vo.getId());
-			stmt.setString(2, vo.getPassword());
-			stmt.setString(3, vo.getName());
-			stmt.setString(4, vo.getRole());
+			stmt = conn.prepareStatement(INSERT_USER);
+			stmt.setString(1, uv.getId());
+			stmt.setString(2, uv.getPassword());
+			stmt.setString(3, uv.getName());
+			stmt.setString(4, uv.getRole());
 			
 			stmt.executeUpdate();
 		}
@@ -66,13 +91,13 @@ public class UserDao {
 		}
 	}
 	
-	public void updateUser(UserVo vo) {
+	public void updateUser(UserVo uv) {
 		try {
 			conn = JdbcUtil.getConnection();
-			stmt = conn.prepareStatement(USER_UPDATE);
-			stmt.setString(1, vo.getName());
-			stmt.setString(2, vo.getRole());
-			stmt.setString(3, vo.getId());
+			stmt = conn.prepareStatement(UPDATE_USER);
+			stmt.setString(1, uv.getName());
+			stmt.setString(2, uv.getRole());
+			stmt.setString(3, uv.getId());
 			
 			stmt.executeUpdate();
 		}
@@ -87,7 +112,7 @@ public class UserDao {
 	public void deleteUser(String id) {
 		try {
 			conn = JdbcUtil.getConnection();
-			stmt = conn.prepareStatement(USER_DELETE);
+			stmt = conn.prepareStatement(DELETE_USER);
 			stmt.setString(1, id);
 			
 			stmt.executeUpdate();

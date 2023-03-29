@@ -24,13 +24,13 @@ public class JdbcUtil {
 	
 	public static void close(PreparedStatement stmt, Connection conn) {
 		try {
-			stmt.close();
+			if (stmt != null) stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			conn.close();
+			if (conn != null) conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -38,19 +38,19 @@ public class JdbcUtil {
 	
 	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
 		try {
-			rs.close();
+			if (rs != null) rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			stmt.close();
+			if (stmt != null) stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			conn.close();
+			if (conn != null) conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
