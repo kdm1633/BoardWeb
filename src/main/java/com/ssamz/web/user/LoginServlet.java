@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 		uv.setId(id);
 		
 		UserDao ud = new UserDao();
-		UserVo user = ud.selectUser(uv);
+		UserVo user = ud.getUser(uv);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
