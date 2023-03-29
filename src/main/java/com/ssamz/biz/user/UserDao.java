@@ -20,7 +20,7 @@ public class UserDao {
 	private String UPDATE_USER = "UPDATE users SET name = ?, role = ? WHERE id = ?";
 	private String DELETE_USER = "DELETE FROM users WHERE id = ?";
 	
-	public UserVo selectUser(UserVo uv) {
+	public UserVo getUser(UserVo uv) {
 		UserVo user = null;
 		
 		try {
@@ -45,7 +45,7 @@ public class UserDao {
 		return user;
 	}
 	
-	public List<UserVo> selectUsers() {
+	public List<UserVo> getUserList() {
 		List<UserVo> userList = new ArrayList<>();
 		
 		try {
