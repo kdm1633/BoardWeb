@@ -28,13 +28,14 @@ public class UserDao {
 			stmt = conn.prepareStatement(SELECT_USER);
 			stmt.setString(1, uv.getId());
 			rs = stmt.executeQuery();
-			rs.next();
 			
-			user = new UserVo();
-			user.setId(rs.getString("id"));
-			user.setPassword(rs.getString("password"));
-			user.setName(rs.getString("name"));
-			user.setRole(rs.getString("role"));
+			if (rs.next()) {
+				user = new UserVo();
+				user.setId(rs.getString("id"));
+				user.setPassword(rs.getString("password"));
+				user.setName(rs.getString("name"));
+				user.setRole(rs.getString("role"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
