@@ -3,6 +3,7 @@ package com.ssamz.web.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +33,8 @@ public class LoginServlet extends HttpServlet {
 		
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
-				out.println("손님 로그인 환영!<br>");
-				out.println("<a href='/getPostList.do'>글목록 이동</a>");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("getPostList.do");
+				dispatcher.forward(request, response);
 			}
 			else {
 				out.println("비밀번호 오류입니다.<br>");

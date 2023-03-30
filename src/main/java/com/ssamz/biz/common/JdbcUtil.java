@@ -25,11 +25,6 @@ public class JdbcUtil {
 	public static void close(PreparedStatement stmt, Connection conn) {
 		try {
 			if (stmt != null) stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
 			if (conn != null) conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,17 +34,7 @@ public class JdbcUtil {
 	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
 		try {
 			if (rs != null) rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
 			if (stmt != null) stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
 			if (conn != null) conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

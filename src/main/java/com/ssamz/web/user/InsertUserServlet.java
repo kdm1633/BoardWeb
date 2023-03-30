@@ -32,7 +32,7 @@ public class InsertUserServlet extends HttpServlet {
 		String age = request.getParameter("age");
 		
 		System.out.println("아이디 : " + id);
-		System.out.println("비밀번호 : " + password);
+		System.out.println(	"비밀번호 : " + password);
 		System.out.println("이름 : " + name);
 		System.out.println("권한 : " + role);
 		System.out.println("자기소개 : " + selfInfo);

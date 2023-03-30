@@ -1,0 +1,26 @@
+.all {
+	text-align: center;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table {
+	margin: 0 auto;
+	text-align: left;
+}
+
+th {
+	width: 150px;
+	background-color: orange;
+}
+
+td:has([type="submit"]) {
+	text-align: center;
+}
+
+.td-name {
+	background-color: orange;
+}
