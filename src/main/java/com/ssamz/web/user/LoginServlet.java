@@ -6,9 +6,11 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ssamz.biz.user.UserDao;
 import com.ssamz.biz.user.UserVo;
@@ -33,6 +35,12 @@ public class LoginServlet extends HttpServlet {
 		
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
+				HttpSession session = request.getSession();
+				session.setMaxInactiveInterval(300);
+				session.setAttribute("userId", user.getId());
+				session.setAttribute("userName", user.getName());
+				session.setAttribute("userRole", user.getRole());
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("getPostList.do");
 				dispatcher.forward(request, response);
 			}

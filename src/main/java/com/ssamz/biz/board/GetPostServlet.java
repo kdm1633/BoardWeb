@@ -6,15 +6,23 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/getPost.do")
 public class GetPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		if (userId == null)
+			response.sendRedirect("/");
+		String userRole = (String)session.getAttribute("userRole");
+		
 		String seq = request.getParameter("seq");
 		
 		PostVo pv = new PostVo();
@@ -60,13 +68,14 @@ public class GetPostServlet extends HttpServlet {
 		out.println("<td>" + post.getHit() + "</td>");
 		out.println("</tr>");
 		out.println("<tr>");
-		out.println("<td colspan='2'><input type='submit' value='글수정'/></td>");
+		out.println("<td colspan='2'><input type='submit' value='수정'/></td>");
 		out.println("</tr>");
 		out.println("</table>");
 		out.println("</form>");
-		out.println("<a href='insertPost.html'>글등록</a>&nbsp;&nbsp;&nbsp;");
-		out.println("<a href='deletePost.do?seq=" + post.getSeq() + "'>글삭제</a>&nbsp;&nbsp;&nbsp;");
-		out.println("<a href='getPostList.do'>글목록</a>");
+		out.println("<a href='insertPost.html'>등록</a>&nbsp;&nbsp;&nbsp;");
+		if (userRole.equals("ADMIN"))
+			out.println("<a href='deletePost.do?seq=" + post.getSeq() + "'>삭제</a>&nbsp;&nbsp;&nbsp;");
+		out.println("<a href='getPostList.do'>목록</a>");
 		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");

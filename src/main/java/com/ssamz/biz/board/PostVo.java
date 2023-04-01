@@ -20,4 +20,7 @@ public class PostVo {
 	private String content;
 	private Date regDate;
 	private int hit;
+	
+	private String searchType;
+	private String searchKeyword;
 }

@@ -7,39 +7,46 @@ table, th, td {
 	border-collapse: collapse;
 }
 
-table {
-	margin: 0 auto;
+#search {
+	margin: auto;
+	width: 700px;
+	text-align: right;
 }
 
-th {
+#post-list {
+	margin: auto;
+	width: 700px;
+}
+
+#post-list th {
 	background-color: orange;
 }
 
-th:nth-child(1) {
+#post-list th:nth-child(1) {
 	width: 50px;
 }
 
-th:nth-child(2) {
+#post-list th:nth-child(2) {
 	width: 150px;
 }
 
-th:nth-child(3) {
+#post-list th:nth-child(3) {
 	width: 100px;
 }
 
-th:nth-child(4) {
-	width: 200px;
+#post-list th:nth-child(4) {
+	width: 250px;
 }
 
-th:nth-child(5) {
+#post-list th:nth-child(5) {
 	width: 100px;
 }
 
-th:nth-child(6) {
+#post-list th:nth-child(6) {
 	width: 50px;
 }
 
-td {
+#post-list td {
 	text-align: left;
 	padding-left: 5px;
 }

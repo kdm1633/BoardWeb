@@ -19,6 +19,8 @@ public class PostDao {
 	private String INSERT_POST = "INSERT INTO board(seq, title, writer, content) VALUES((SELECT nvl(max(seq), 0) + 1 FROM board), ?, ?, ?)";
 	private String UPDATE_POST = "UPDATE board SET title = ?, content = ? WHERE seq = ?";
 	private String DELETE_POST = "DELETE FROM board WHERE seq = ?";
+	private String SEARCH_TITLE = "SELECT * FROM board WHERE title like '%'||?||'%' ORDER BY seq DESC";
+	private String SEARCH_CONTENT = "SELECT * FROM board WHERE content like '%'||?||'%' ORDER BY seq DESC";
 	
 	public PostVo getPost(PostVo pv) {
 		PostVo post = null;
@@ -52,7 +54,11 @@ public class PostDao {
 		
 		try {
 			conn = JdbcUtil.getConnection();
-			stmt = conn.prepareStatement(SELECT_LIST);
+			if (pv.getSearchType().equals("title"))
+				stmt = conn.prepareStatement(SEARCH_TITLE);
+			else if (pv.getSearchType().equals("content"))
+				stmt = conn.prepareStatement(SEARCH_CONTENT);
+			stmt.setString(1, pv.getSearchKeyword());
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {
