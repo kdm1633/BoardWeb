@@ -27,6 +27,7 @@ public class GetPostListServlet extends HttpServlet {
 		ServletContext context = getServletContext();
 		String encoding = context.getInitParameter("boardEncoding");
 		request.setCharacterEncoding(encoding);
+		String welcomeMessage = (String)context.getAttribute("welcomeMessage");
 		
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
@@ -57,7 +58,7 @@ public class GetPostListServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<div class='all'>");
 		out.println("<h1>게시글 목록</h1>");
-		out.println("<h3>" + userName + "님 로그인 환영합니다");
+		out.println("<h3>" + userName + welcomeMessage);
 		out.println("<a href='logout.do'>logout</a></h3>");
 		
 		out.println("<!-- 검색 시작 -->");

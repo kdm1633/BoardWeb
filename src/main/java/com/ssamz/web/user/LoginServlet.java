@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +40,9 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("userId", user.getId());
 				session.setAttribute("userName", user.getName());
 				session.setAttribute("userRole", user.getRole());
+				
+				ServletContext context = getServletContext();
+				context.setAttribute("welcomeMessage", "님 환영합니다.");
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("getPostList.do");
 				dispatcher.forward(request, response);
