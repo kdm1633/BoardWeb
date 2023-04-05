@@ -13,27 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ssamz.biz.user.UserVo;
+
 @WebServlet("/getPostList.do")
 public class GetPostListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		if (userId == null)
-			response.sendRedirect("/");
-		String userName = (String)session.getAttribute("userName");
-		
-		ServletContext context = getServletContext();
-		String encoding = context.getInitParameter("boardEncoding");
-		request.setCharacterEncoding(encoding);
-		String welcomeMessage = (String)context.getAttribute("welcomeMessage");
-		
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
 		if (searchType == null) searchType= "title";
 		if (searchKeyword == null) searchKeyword = "";
 		
+		HttpSession session = request.getSession();
 		session.setAttribute("type", searchType);
 		session.setAttribute("keyword", searchKeyword);
 		String type = (String)session.getAttribute("type");
@@ -58,7 +50,8 @@ public class GetPostListServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<div class='all'>");
 		out.println("<h1>게시글 목록</h1>");
-		out.println("<h3>" + userName + welcomeMessage);
+		UserVo user= (UserVo)session.getAttribute("user");
+		out.println("<h3>" + user.getName() + "님 환영합니다.");
 		out.println("<a href='logout.do'>logout</a></h3>");
 		
 		out.println("<!-- 검색 시작 -->");

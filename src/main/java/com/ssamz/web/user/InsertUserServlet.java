@@ -18,11 +18,6 @@ public class InsertUserServlet extends HttpServlet {
 	private String encoding;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = getServletContext();
-    	encoding = context.getInitParameter("boardEncoding");
-    	System.out.println("---> Encoding : " + encoding);
-		request.setCharacterEncoding(encoding);
-		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");

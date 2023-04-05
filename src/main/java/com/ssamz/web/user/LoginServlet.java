@@ -36,13 +36,7 @@ public class LoginServlet extends HttpServlet {
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
 				HttpSession session = request.getSession();
-				session.setMaxInactiveInterval(300);
-				session.setAttribute("userId", user.getId());
-				session.setAttribute("userName", user.getName());
-				session.setAttribute("userRole", user.getRole());
-				
-				ServletContext context = getServletContext();
-				context.setAttribute("welcomeMessage", "님 환영합니다.");
+				session.setAttribute("user", user);
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("getPostList.do");
 				dispatcher.forward(request, response);

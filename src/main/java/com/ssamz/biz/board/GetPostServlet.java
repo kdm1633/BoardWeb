@@ -12,17 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ssamz.biz.user.UserVo;
+
 @WebServlet("/getPost.do")
 public class GetPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		if (userId == null)
-			response.sendRedirect("/");
-		String userRole = (String)session.getAttribute("userRole");
-		
 		String seq = request.getParameter("seq");
 		
 		PostVo pv = new PostVo();
@@ -73,7 +69,9 @@ public class GetPostServlet extends HttpServlet {
 		out.println("</table>");
 		out.println("</form>");
 		out.println("<a href='insertPost.html'>등록</a>&nbsp;&nbsp;&nbsp;");
-		if (userRole.equals("ADMIN"))
+		HttpSession session = request.getSession();
+		UserVo user = (UserVo)session.getAttribute("user");
+		if (user.getRole().equals("ADMIN"))
 			out.println("<a href='deletePost.do?seq=" + post.getSeq() + "'>삭제</a>&nbsp;&nbsp;&nbsp;");
 		out.println("<a href='getPostList.do'>목록</a>");
 		out.println("</div>");

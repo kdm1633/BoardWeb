@@ -17,10 +17,6 @@ public class UpdatePostServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletContext context = getServletContext();
-		encoding = context.getInitParameter("boardEncoding");
-		request.setCharacterEncoding(encoding);
-		
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
