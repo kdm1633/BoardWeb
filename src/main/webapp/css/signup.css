@@ -14,3 +14,7 @@ table, th, td {
 .name-td {
 	background-color: orange;
 }
+
+.signup-btn {
+	text-align: center;
+}

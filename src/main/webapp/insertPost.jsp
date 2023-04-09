@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +8,10 @@
 	<title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="../layout/header.jsp" %>
+
 	<div class="all">
-		<h1>게시글 등록</h1>
-		<hr>
-		<form method="post" action="insertPost.do">
+		<form method="post" action="insertPost_proc.jsp">
 			<table>
 				<tr>
 					<td class="td-name">제목</td>
@@ -29,5 +31,7 @@
 			</table>
 		</form>
 	</div>
+	
+	<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>

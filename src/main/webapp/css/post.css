@@ -1,20 +1,12 @@
-.all {
+.main {
 	text-align: center;
 }
 
-table, th, td {
+table, td {
+	margin: 0 auto;
 	border: 1px solid black;
 	border-collapse: collapse;
-}
-
-table {
-	margin: 0 auto;
 	text-align: left;
-}
-
-th {
-	width: 150px;
-	background-color: orange;
 }
 
 td:has([type="submit"]) {

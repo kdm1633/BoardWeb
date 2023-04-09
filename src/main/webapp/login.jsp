@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,11 +23,13 @@
 <title>Login</title>
 </head>
 <body>
+	<%@ include file="../layout/header.jsp" %>
+
 	<div class="center">
 		<h1>LOGIN</h1>
 		<img src="image/newYorker.png" width="90" height="100" alt="NewYorker">
-		<hr>
-		<form method="post" action="login.do">
+		<br>
+		<form method="post" action="login_proc.jsp">
 			<table class="login-table">
 				<tr>
 					<td class="color">Id</td>
@@ -42,9 +46,8 @@
 				</tr>
 			</table>
 		</form>
-		<br>
-		<a href="insertUser.html">Sign up</a>
-		<br>
 	</div>
+	
+	<%@ include file="../layout/footer.jsp" %>
 </body>
 </html>

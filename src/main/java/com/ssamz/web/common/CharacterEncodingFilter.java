@@ -14,10 +14,10 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpFilter;
 
 @WebFilter(urlPatterns={ 
-				"/insertPost.do", 
-				"/insertUser.do", 
-				"/updatePost.do", 
-				"/getPostList.do"},
+				"/insertPost_proc.jsp", 
+				"/insertUser_proc.jsp", 
+				"/updatePost_proc.jsp", 
+				"/index.jsp"},
 		initParams=@WebInitParam(name="boardEncoding", value="UTF-8"))
 public class CharacterEncodingFilter extends HttpFilter implements Filter {
 	private String encoding;

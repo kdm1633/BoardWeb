@@ -20,9 +20,18 @@
 	<%@ include file="../layout/header.jsp" %>
 	
 	<%
+		String searchType = request.getParameter("searchType");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchType == null) searchType = "title";
+		if (searchKeyword == null) searchKeyword = "";
+		
+		session.setAttribute("type", searchType);
+		session.setAttribute("keyword", searchKeyword);
+	
 		PostVo pv = new PostVo();
-		pv.setSearchType("title");
-		pv.setSearchKeyword("");
+		pv.setSearchType(searchType);
+		pv.setSearchKeyword(searchKeyword);
 		
 		PostDao pd = new PostDao();
 		List<PostVo> postList = pd.getPostList(pv);
@@ -30,15 +39,17 @@
 	
 	<div class="main">
 		<!-- search -->
-		<form method="post" action="getPostList.do">
+		<form method="post" action="/index.jsp">
 			<table id="search">
 				<tr>
 					<td>
+						<% String type = (String)session.getAttribute("type"); %>
 						<select name="searchType">
-							<option value="title">제목
-							<option value="content">내용
+							<option value="title" <%= (type.equals("title")) ? "selected" : "" %>>제목
+							<option value="content" <%= (type.equals("content")) ? "selected" : "" %>>내용
 						</select>
-						<input type="text" name="searchKeyword"/>
+						<% String keyword = (String)session.getAttribute("keyword"); %>
+						<input type="text" name="searchKeyword" value="<%= keyword %>"/>
 						<input type="submit" value="검색"/>
 					</td>
 				</tr>
@@ -57,7 +68,7 @@
 			<% for (PostVo post : postList) { %>
 				<tr>
 					<td><%= post.getSeq() %></td>
-					<td><a href="/getPost.do?seq=<%= post.getSeq()%>"><%= post.getTitle() %></a></td>
+					<td><a href="/getPost.jsp?seq=<%= post.getSeq() %>"><%= post.getTitle() %></a></td>
 					<td><%= post.getWriter() %></td>
 					<td><%= post.getRegDate() %></td>
 					<td><%= post.getHit() %></td>
