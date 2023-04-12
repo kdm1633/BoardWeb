@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.ssamz.biz.board.PostVo,
-	com.ssamz.biz.board.PostDao" %>
+<%@ page import="com.ssamz.biz.board.PostVo" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,19 +10,13 @@
 </head>
 <body>
 	<%
-		int seq = Integer.parseInt(request.getParameter("seq"));
-	
-		PostVo pv = new PostVo();
-		pv.setSeq(seq);
-		
-		PostDao pd = new PostDao();
-		PostVo post = pd.getPost(pv);
+		PostVo post = (PostVo)request.getAttribute("post");
 	%>
 
-	<%@ include file="../layout/header.jsp"  %>
+	<%@ include file="../WEB-INF/layout/header.jsp" %>
 	
 	<div class="main">
-		<form method="post" action="updatePost_proc.jsp">
+		<form method="post" action="updatePost.do">
 			<input type="hidden" name="seq" value="<%= post.getSeq() %>"/>
 			<table>
 					<tr>
@@ -53,10 +46,10 @@
 		</form>
 		<br>
 		<% if (user!=null && user.getRole().equals("ADMIN")) { %>
-			<a href="deletePost_proc.jsp?seq=<%= post.getSeq() %>">삭제</a>
+			<a href="deletePost.do?seq=<%= post.getSeq() %>">삭제</a>
 		<% } %>
 	</div>
 	
-	<%@ include file="../layout/footer.jsp" %>
+	<%@ include file="../WEB-INF/layout/footer.jsp" %>
 </body>
 </html>

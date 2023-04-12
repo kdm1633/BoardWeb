@@ -8,9 +8,9 @@
 </head>
 <body>
 
-	<%@ include file="/layout/header.jsp" %>
+	<%@ include file="../WEB-INF/layout/header.jsp" %>
 
-	<form method="post" action="insertUser_proc.jsp">
+	<form method="post" action="/insertUser.do">
 		<table>
 			<tr>
 				<td class="name-td">아이디</td>
@@ -68,7 +68,7 @@
 		</table>
 	</form>
 	
-	<%@ include file="layout/footer.jsp" %>
+	<%@ include file="../WEB-INF/layout/footer.jsp" %>
 	
 </body>
 </html>

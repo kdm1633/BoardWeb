@@ -23,13 +23,13 @@
 <title>Login</title>
 </head>
 <body>
-	<%@ include file="../layout/header.jsp" %>
+	<%@ include file="../WEB-INF/layout/header.jsp" %>
 
 	<div class="center">
 		<h1>LOGIN</h1>
 		<img src="image/newYorker.png" width="90" height="100" alt="NewYorker">
 		<br>
-		<form method="post" action="login_proc.jsp">
+		<form method="post" action="login.do">
 			<table class="login-table">
 				<tr>
 					<td class="color">Id</td>
@@ -48,6 +48,6 @@
 		</form>
 	</div>
 	
-	<%@ include file="../layout/footer.jsp" %>
+	<%@ include file="../WEB-INF/layout/footer.jsp" %>
 </body>
 </html>

@@ -13,11 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpFilter;
 
-@WebFilter(urlPatterns={ 
-				"/insertPost_proc.jsp", 
-				"/insertUser_proc.jsp", 
-				"/updatePost_proc.jsp", 
-				"/index.jsp"},
+@WebFilter(urlPatterns={"*.do"},
 		initParams=@WebInitParam(name="boardEncoding", value="UTF-8"))
 public class CharacterEncodingFilter extends HttpFilter implements Filter {
 	private String encoding;

@@ -8,10 +8,10 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="../layout/header.jsp" %>
+	<%@ include file="../WEB-INF/layout/header.jsp" %>
 
 	<div class="all">
-		<form method="post" action="insertPost_proc.jsp">
+		<form method="post" action="insertPost.do">
 			<table>
 				<tr>
 					<td class="td-name">제목</td>
@@ -32,6 +32,6 @@
 		</form>
 	</div>
 	
-	<%@ include file="../layout/footer.jsp" %>
+	<%@ include file="../WEB-INF/layout/footer.jsp" %>
 </body>
 </html>
