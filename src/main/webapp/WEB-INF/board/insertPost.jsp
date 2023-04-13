@@ -8,7 +8,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="../WEB-INF/layout/header.jsp" %>
+	<%@ include file="/WEB-INF/layout/header.jsp" %>
 
 	<div class="all">
 		<form method="post" action="insertPost.do">
@@ -32,6 +32,6 @@
 		</form>
 	</div>
 	
-	<%@ include file="../WEB-INF/layout/footer.jsp" %>
+	<%@ include file="/WEB-INF/layout/footer.jsp" %>
 </body>
 </html>

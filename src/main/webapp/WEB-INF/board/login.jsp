@@ -23,7 +23,7 @@
 <title>Login</title>
 </head>
 <body>
-	<%@ include file="../WEB-INF/layout/header.jsp" %>
+	<%@ include file="/WEB-INF/layout/header.jsp" %>
 
 	<div class="center">
 		<h1>LOGIN</h1>
@@ -48,6 +48,6 @@
 		</form>
 	</div>
 	
-	<%@ include file="../WEB-INF/layout/footer.jsp" %>
+	<%@ include file="/WEB-INF/layout/footer.jsp" %>
 </body>
 </html>
