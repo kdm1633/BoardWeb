@@ -29,6 +29,6 @@ public class TimeCheckFilter extends HttpFilter implements Filter {
 		
 		long endTime = System.currentTimeMillis();
 		
-		System.out.println(path + "요청 처리에 소요된 시간 : " + (endTime - startTime) + "ms(초)");
+		System.out.println("'" + path + "' 요청 처리에 소요된 시간 : " + (endTime - startTime) + "ms(초)");
 	}
 }
