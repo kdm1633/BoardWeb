@@ -18,11 +18,11 @@ import com.ssamz.biz.user.UserVo;
 
 @WebServlet("*.do")
 public class DispatcherServlet extends HttpServlet {
-	private MappingHandler mappingHandler;
+	private HandlerMapping handlerMapping;
 	private ViewResolver viewResolver;
 	
 	public DispatcherServlet() {
-		mappingHandler = new MappingHandler();
+		handlerMapping = new HandlerMapping();
 		viewResolver = new ViewResolver();
 		viewResolver.setPrefix("/WEB-INF/board/");
 		viewResolver.setSuffix(".jsp");
@@ -32,7 +32,7 @@ public class DispatcherServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"));
 		
-		Controller controller = mappingHandler.getController(path);
+		Controller controller = handlerMapping.getController(path);
 		String viewName = controller.handleRequest(request, response);
 		
 		String view = null;

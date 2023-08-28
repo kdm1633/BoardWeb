@@ -15,10 +15,10 @@ import com.ssamz.web.controller.user.InsertUserViewController;
 import com.ssamz.web.controller.user.LoginController;
 import com.ssamz.web.controller.user.LoginViewController;
 
-public class MappingHandler {
+public class HandlerMapping {
 	private Map<String, Controller> mappings;
 	
-	public MappingHandler() {
+	public HandlerMapping() {
 		mappings = new HashMap<String, Controller>();
 		
 		mappings.put("/insertUserView.do", new InsertUserViewController());
