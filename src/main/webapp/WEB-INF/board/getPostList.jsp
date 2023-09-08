@@ -47,15 +47,15 @@
 				<th><fmt:message key="post.list.head.regDate"/></th>
 				<th><fmt:message key="post.list.head.hit"/></th>
 			</tr>
-				<c:forEach var="post" items="${postList }">
-				<tr>
-					<td>${post.seq }</td>
-					<td><a href="/getPost.do?seq=${post.seq }">${post.title }</a></td>
-					<td>${post.writer }</td>
-					<td>${post.regDate }</td>
-					<td>${post.hit }</td>
-				</tr>
-				</c:forEach>
+			<c:forEach var="post" items="${postList }">
+			<tr>
+				<td>${post.seq }</td>
+				<td><a href="/getPost.do?seq=${post.seq }">${post.title }</a></td>
+				<td>${post.writer }</td>
+				<td>${post.regDate }</td>
+				<td>${post.hit }</td>
+			</tr>
+			</c:forEach>
 		</table>
 	</div>
 	</fmt:bundle>
